@@ -28,19 +28,19 @@ app.get('/api/hello', function(req, res) {
 app.post('/api/shorturl',(req,res)=>{
     const input = req.body.url;
     if(!/^https?:\/\//.test(input)){
-        return res.json({err:'invalid url'});
+        return res.json({erroror:'invalid url'});
     }
     let hostname;
     try{
       const parsedUrl = new URL (input);
       hostname = parsedUrl.hostname;
-    }catch(err){
-      return res.json({err:'invalid url'})
+    }catch(error){
+      return res.json({error:'invalid url'})
     }
     
-    dns.lookup(hostname,(err,address)=>{
-        if(err){
-            return res.json({err:'invalid domain'})
+    dns.lookup(hostname,(error,address)=>{
+        if(error){
+            return res.json({error:'invalid domain'})
         }else{
           const short = urls.length + 1;
           urls.push({"original_url":input,"short_url":short});
