@@ -28,7 +28,7 @@ app.get('/api/hello', function(req, res) {
 app.post('/api/shorturl',(req,res)=>{
     const input = req.body.url;
     if(!/^https?:\/\//.test(input)){
-        return res.json({erroror:'invalid url'});
+        return res.json({error:'invalid url'});
     }
     let hostname;
     try{
